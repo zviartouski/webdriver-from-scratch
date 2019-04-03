@@ -1,16 +1,17 @@
-package pageobject_model.page.pagefactory.with_abstract_page;
+package pageobject_model.page.pagefactory.without_abstract_page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class SearchResultsPageWithAbstractPO extends AbstractPage {
+public class SearchResultsPagePFMixed {
 
     private final String splitRegex = "\\s";
+    private WebDriver driver;
     private String searchTerm;
 
     //use dynamic locator with "contains", split and iteration over the list of search terms
@@ -20,9 +21,10 @@ public class SearchResultsPageWithAbstractPO extends AbstractPage {
     @FindBy(xpath = "//div[contains(@class,'gsc-webResult')]")
     private List<WebElement> generalSearchResults;
 
-    public SearchResultsPageWithAbstractPO(WebDriver driver, String searchTerm) {
-        super(driver);
+    public SearchResultsPagePFMixed(WebDriver driver, String searchTerm) {
         this.searchTerm = searchTerm;
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public int countGeneralNumberOfSearchResults() {
@@ -43,17 +45,7 @@ public class SearchResultsPageWithAbstractPO extends AbstractPage {
             partWithSearchTerm += String.format(containsPart, term);
         }
         String locatorForSearch = String.format(defaultLocator, partWithSearchTerm);
-
-        //below is just utility output via System.out.println since dedicated logger is out of scope at this stage
         System.out.println("DEBUG: Final locator with search terms: " + locatorForSearch);
         return locatorForSearch;
-    }
-
-    @Override
-    protected AbstractPage openPage() {
-        throw new RuntimeException ("Please 'think twice' whether you need this page open directly " +
-                "if direct access is still needed - please dig into Google Custom Search engine at https://cse.google.com/cse/ for proper implementation " +
-                "or avoid inheritance from AbstractPage " +
-                "or remove openPage() method from AbstractPage.");
     }
 }

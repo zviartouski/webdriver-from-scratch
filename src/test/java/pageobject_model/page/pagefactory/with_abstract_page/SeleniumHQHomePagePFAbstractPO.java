@@ -2,11 +2,8 @@ package pageobject_model.page.pagefactory.with_abstract_page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobject_model.page.pagefactory.mixed.SearchResultsPage;
 import waits.CustomConditions;
 
 public class SeleniumHQHomePagePFAbstractPO extends AbstractPage {
@@ -33,10 +30,10 @@ public class SeleniumHQHomePagePFAbstractPO extends AbstractPage {
         return this;
     }
 
-    public SearchResultsPage searchForTerms(String term) {
+    public SearchResultsPagePFMixedWithAbstractPO searchForTerms(String term) {
         searchInput.sendKeys(term);
         searchButton.click();
-        return new SearchResultsPage(driver, term);
+        return new SearchResultsPagePFMixedWithAbstractPO(driver, term);
     }
 
 }

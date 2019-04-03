@@ -1,11 +1,11 @@
-package pageobject_model.page.wthout_pagefactory;
+package pageobject_model.page.without_pagefactory;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobject_model.page.pagefactory.mixed.SearchResultsPage;
+import pageobject_model.page.pagefactory.without_abstract_page.SearchResultsPagePFMixed;
 import waits.CustomConditions;
 
 public class SeleniumHQHomePageNoPF {
@@ -27,7 +27,7 @@ public class SeleniumHQHomePageNoPF {
         return this;
     }
 
-    public SearchResultsPage searchForTerms(String term) {
+    public SearchResultsPagePFMixed searchForTerms(String term) {
         WebElement searchInput = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.presenceOfElementLocated(searchInputLocator));
         searchInput.sendKeys(term);
@@ -36,6 +36,6 @@ public class SeleniumHQHomePageNoPF {
                 .until(ExpectedConditions.presenceOfElementLocated(searchButtonLocator));
         searchButton.click();
 
-        return new SearchResultsPage(driver, term);
+        return new SearchResultsPagePFMixed(driver, term);
     }
 }
