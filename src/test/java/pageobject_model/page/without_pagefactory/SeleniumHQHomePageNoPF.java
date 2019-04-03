@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobject_model.page.pagefactory.without_abstract_page.SearchResultsPagePFMixed;
 import waits.CustomConditions;
 
 public class SeleniumHQHomePageNoPF {
@@ -27,7 +26,7 @@ public class SeleniumHQHomePageNoPF {
         return this;
     }
 
-    public SearchResultsPagePFMixed searchForTerms(String term) {
+    public SearchResultsPageNoPF searchForTerms(String term) {
         WebElement searchInput = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.presenceOfElementLocated(searchInputLocator));
         searchInput.sendKeys(term);
@@ -36,6 +35,6 @@ public class SeleniumHQHomePageNoPF {
                 .until(ExpectedConditions.presenceOfElementLocated(searchButtonLocator));
         searchButton.click();
 
-        return new SearchResultsPagePFMixed(driver, term);
+        return new SearchResultsPageNoPF (driver, term);
     }
 }
