@@ -30,6 +30,7 @@ public class WebDriverSeleniumHQTest {
 
         driver.get("http://seleniumhq.org");
         //risky point here
+        //new page goes here
         new WebDriverWait(driver, 10)
                 .until(CustomConditions.jQueryAJAXsCompleted());
 
@@ -40,6 +41,7 @@ public class WebDriverSeleniumHQTest {
         List<WebElement> searchBtn = driver.findElements(By.xpath("//*[@value='Go']"));
         searchBtn.get(0).click();
         //risky point here
+        //new page goes here
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions
                         .presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'gsc-webResult') and contains(.,'selenium') and contains(.,'java')]")));
@@ -47,6 +49,7 @@ public class WebDriverSeleniumHQTest {
         List<WebElement> searchResults = driver.findElements(By.xpath("//div[contains(@class,'gsc-webResult') and contains(.,'selenium') and contains(.,'java')]"));
         System.out.println("Search results number for requested term: " + searchResults.size());
 
+        //page interactions are complete, final verification goes below
         Assert.assertTrue (searchResults.size()>0, "Search results are empty!");
     }
 
