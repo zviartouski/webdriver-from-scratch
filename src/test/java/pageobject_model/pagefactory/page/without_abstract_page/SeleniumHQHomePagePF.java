@@ -1,17 +1,16 @@
-package pageobject_model.page.pagefactory.with_abstract_page;
+package pageobject_model.pagefactory.page.without_abstract_page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import waits.CustomConditions;
 
-public class SeleniumHQHomePagePFAbstractPO extends AbstractPage {
+public class SeleniumHQHomePagePF {
 
     private static final String HOMEPAGE_URL = "http://seleniumhq.org";
-
-//    @FindAll({@FindBy(id = "q"), @FindBy(name = "abc")})
-//    private WebElement searchInput;
+    private WebDriver driver;
 
     @FindBy(id = "q")
     private WebElement searchInput;
@@ -19,21 +18,22 @@ public class SeleniumHQHomePagePFAbstractPO extends AbstractPage {
     @FindBy(xpath = "//*[@value='Go']")
     private WebElement searchButton;
 
-    public SeleniumHQHomePagePFAbstractPO(WebDriver driver) {
-        super(driver);
+    public SeleniumHQHomePagePF(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    public SeleniumHQHomePagePFAbstractPO openPage() {
+    public SeleniumHQHomePagePF openPage() {
         driver.get(HOMEPAGE_URL);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+        new WebDriverWait(driver, 10)
                 .until(CustomConditions.jQueryAJAXsCompleted());
         return this;
     }
 
-    public SearchResultsPagePFMixedWithAbstractPO searchForTerms(String term) {
+    public SearchResultsPagePFMixed searchForTerms(String term) {
         searchInput.sendKeys(term);
         searchButton.click();
-        return new SearchResultsPagePFMixedWithAbstractPO(driver, term);
+        return new SearchResultsPagePFMixed(driver, term);
     }
 
 }

@@ -1,4 +1,4 @@
-package pageobject_model.test;
+package pageobject_model.pagefactory.test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobject_model.page.pagefactory.with_abstract_page.SeleniumHQHomePagePFAbstractPO;
+import pageobject_model.pagefactory.page.with_abstract_page.SeleniumHQHomePagePFAbstractPO;
 
 public class WebDriverSeleniumHQPFAbstractPOTest {
 

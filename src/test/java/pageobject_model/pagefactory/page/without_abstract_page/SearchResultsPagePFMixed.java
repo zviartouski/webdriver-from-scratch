@@ -1,4 +1,4 @@
-package pageobject_model.page.pagefactory.without_abstract_page;
+package pageobject_model.pagefactory.page.without_abstract_page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
