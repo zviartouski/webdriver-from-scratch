@@ -12,6 +12,13 @@ public class SeleniumHQHomePagePF {
     private static final String HOMEPAGE_URL = "http://seleniumhq.org";
     private WebDriver driver;
 
+//    Some alternative variants of syntax for single element search
+//    @FindAll({@FindBy(id = "q"), @FindBy(name = "abc")})
+//    private WebElement searchInput;
+
+//    with no annotations at all, by default - per id/name
+//    private WebElement q;
+
     @FindBy(id = "q")
     private WebElement searchInput;
 
