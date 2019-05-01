@@ -1,4 +1,4 @@
-package pageobject_model.page.without_pagefactory;
+package pageobject_model.without_pagefactory.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,13 +16,10 @@ public class SearchResultsPageNoPF {
     private String searchTerm;
 
     //use dynamic locator with "contains", split and iteration over the list of search terms
-    private By generalSearchResultsLocator = By.xpath("//div[contains(@class,'gsc-webResult')]");
+    private final By generalSearchResultsLocator = By.xpath("//div[contains(@class,'gsc-webResult')]");
     private String defaultLocator = "//div[contains(@class,'gsc-webResult')%s]";
     private String containsPart = " and contains(.,'%s')";
     private final int WAIT_TIMEOUT_SECONDS = 10;
-
-    @FindBy(xpath = "//div[contains(@class,'gsc-webResult')]")
-    private List<WebElement> generalSearchResults;
 
     public SearchResultsPageNoPF(WebDriver driver, String searchTerm) {
         this.searchTerm = searchTerm;
